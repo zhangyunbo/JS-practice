@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		#container{
+			width: 300px;
+			height: 200px;
+			position: relative;
+			margin: 200px auto;
+			border: 1px solid #000;
+			position: relative;
+			overflow: hidden;
+		}
+		#imgs{
+			width: 400px;
+			position: absolute;
+		}
+		#imgs li{
+			width: 90px;
+			height: 120px;
+			background: #000;
+			color: #fff;
+			display: inline-block;
+			float: left;
+			margin-right: 10px;
+		}
+		#arrows{
+			width: 100px;
+			height: 30px;
+			position: absolute;
+			top: 50%;
+			margin-top: 50px;
+			left: 50%;
+			margin-left: -40px;
+		}
+		#left,#right{
+			width: 50px;
+			height: 30px;
+			background: #ccc;
+			color: #000;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="imgs">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div id="arrows">
+			<span id="left">向左</span>
+			<span id="right">向右</span>
+		</div>
+	</div>
+	<script>
+		var oImgs = document.getElementById('imgs');
+		var oLeft = document.getElementById('left');
+		var oRight = document.getElementById('right');
+		var speed = 10;
+		oImgs.innerHTML += oImgs.innerHTML;
+		oImgs.style.width = 2 * oImgs.offsetWidth + 'px';
+		setInterval(function(){
+			oImgs.style.left = oImgs.offsetLeft + speed + 'px';
+			if(parseInt(oImgs.style.left) <= - oImgs.offsetWidth / 2){
+				oImgs.style.left = 0;
+			}
+			if(parseInt(oImgs.style.left) > 0){
+				oImgs.style.left = -oImgs.offsetWidth / 2 +'px';
+			}
+		},90);
+		oLeft.onmouseover = oRight.onmouseover = function(){
+			if(this == oRight){
+				speed = 10;
+			}else{
+				speed = -10;
+			}
+		}
+	</script>
+</body>
+</html>
