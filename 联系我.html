@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>联系我</title>
+	<style>	
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			height: 3333px;
+		}
+		#contect{
+			width: 200px;
+			height: 100px;
+			background: orange;
+			position: fixed;
+			left: -200px;
+			top: 450px;
+		}
+		#tip{
+			width: 50px;
+			height: 100px;
+			background: yellow;
+			text-align: center;
+			line-height: 100px;
+			position: absolute;
+			left: 200px;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="contect">
+		<div id="tip">联系我</div>
+	</div>
+	<script>
+		var oContect = document.getElementById('contect');
+		var timer;
+		oContect.onmouseover = function(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if(oContect.offsetLeft >= 0){
+					clearInterval(timer);
+				}else{
+					oContect.style.left = oContect.offsetLeft + 10 +'px';
+				}
+			},30)
+		};
+		oContect.onmouseout = function(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if(oContect.offsetLeft <= -oContect.offsetWidth){
+					clearInterval(timer);
+				}else{
+					oContect.style.left = oContect.offsetLeft - 10 +'px';
+				}
+			},30)
+		};
+	</script>
+</body>
+</html>
