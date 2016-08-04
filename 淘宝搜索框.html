@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body{
+			height: 2000px;
+		}
+		#header{
+			width: 100%;
+			height: 50px;
+			background: green;
+		}
+		#search{
+			width: 100%;
+			height: 30px;
+			background: red;
+		}
+		.fix{
+			top:0;
+			left: 0;
+			position: fixed;
+		}
+	</style>
+</head>
+<body>
+	<div id="header"></div>	
+	<div id="search"></div>
+	<script>
+		var oSearch = document.getElementById('search');
+		var iSearchTop = oSearch.offsetTop;// 距顶部的高度
+		var bIsFixed = false; // 标志位，是否固定
+		onscroll = function(){
+			var iScrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 获取滚动条距顶部的位置
+			if(iScrollTop >= iSearchTop){
+				oSearch.className = 'fix';
+				bIsFixed = true;
+			}else if(iScrollTop < iSearchTop){
+				oSearch.className = '';
+				bIsFixed = false;
+			}
+		};
+	</script>
+</body>
+</html>
